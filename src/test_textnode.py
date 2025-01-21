@@ -52,6 +52,7 @@ class TestTextNode(unittest.TestCase):
     def test_leafnode_image(self):
         node = TextNode("text node", TextType.IMAGE, 'http://link')
         self.assertEqual(text_node_to_html_node(node).to_html(), '<img src="http://link" alt="text node"></img>')
+        
 
 if __name__ == "__main__":
     unittest.main()
