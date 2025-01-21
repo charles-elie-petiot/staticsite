@@ -28,11 +28,11 @@ def markdown_to_hmtl_node(markdown):
 
 def heading_to_node(block):
     count = len(block) - len(block.lstrip("#"))
-    children = text_to_children(block.lstrip("#"))
+    children = text_to_children(block.lstrip("# "))
     return ParentNode(f"h{count}", children)
 
 def quote_to_node(block):
-    text = block.replace(">", '').replace('\n', '')
+    text = block.replace("> ", '').replace('\n', '')
     children = text_to_children(text)
     return ParentNode("blockquote", children)
 
@@ -50,7 +50,7 @@ def ordered_to_node(block):
     for line in lines:
         sections = line.split('.')
         kept_sections = ".".join(sections[1:])
-        children = text_to_children(kept_sections)
+        children = text_to_children(kept_sections[1:])
         children_liste.append(ParentNode("li", children))
     return ParentNode("ol", children_liste)
 
